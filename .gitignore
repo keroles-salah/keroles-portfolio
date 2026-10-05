@@ -3,8 +3,14 @@ _*.html
 _*.json
 *.tmp
 *.log
+node_modules/
+temp*.js
+obf*.mjs
+package*.json
 
 # OS noise
 .DS_Store
 Thumbs.db
 desktop.ini
+
+

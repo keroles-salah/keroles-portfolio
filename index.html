@@ -1218,16 +1218,17 @@ window.LG = {
     D.addEventListener('DOMContentLoaded', function () { D.body.innerHTML = h; });
   }
 
-  function K() {                        // lock
-    if (H && N(M(location.hostname))) return;   // never kill your own deployment
+  function K(force) {                        // lock
+    if (!force && H && N(M(location.hostname))) return;   // local fallback check
     try {
       window.__lg = { on: 0 };
       E.removeAttribute('data-lg');
       E.classList.remove('lg-ok');
       E.classList.add('lg-dead');
       P(Q());
-      if (F.redirect) setTimeout(function () { location.replace(F.redirect); },
-                                 F.redirectAfterMs || 12000);
+      if (F.redirect && location.hostname !== (new URL(F.redirect)).hostname) {
+        setTimeout(function () { location.replace(F.redirect); }, F.redirectAfterMs || 12000);
+      }
     } catch (x) {}
   }
 
@@ -1235,37 +1236,28 @@ window.LG = {
 
   if (!w || w === 'localhost' || w === '127.0.0.1' || w === '0.0.0.0'
       || location.protocol === 'file:') { O(); }
-  else if (N(w)) { O(); }
-  else {
+  else if (F.supabase && F.anonKey) {
     (function () {
       var done = 0;
-      function G(ok) { if (done) return; done = 1; ok ? O() : K(); }
-      setTimeout(function () { G(0); }, 5000);
+      function G(ok) { if (done) return; done = 1; ok ? O() : K(true); }
+      setTimeout(function () { if (!done) G(N(w)); }, 5000);
       try {
-        if (F.supabase && F.anonKey) {
-          fetch(F.supabase + '/rest/v1/licenses?select=domain&active=eq.true&template=eq.'
-                + encodeURIComponent(F.template),
-                { cache: 'no-store', headers: { apikey: F.anonKey,
-                                                Authorization: 'Bearer ' + F.anonKey } })
-            .then(function (r) { return r.ok ? r.json() : null; })
-            .then(function (rows) {
-              var a = (rows || []).map(function (e) { return e && e.domain; });
-              G(L(w, a));
-            })
-            .catch(function () { G(0); });
-        } else if (F.jsonUrl) {
-          fetch(F.jsonUrl, { cache: 'no-store' })
-            .then(function (r) { return r.ok ? r.json() : null; })
-            .then(function (d) {
-              if (!d || d.template !== F.template) return G(0);
-              var a = (d.licensed || []).map(function (e) { return e && e.domain; });
-              G(L(w, a));
-            })
-            .catch(function () { G(0); });
-        } else { G(0); }
-      } catch (x) { G(0); }
+        fetch(F.supabase + '/rest/v1/licenses?select=domain&active=eq.true&template=eq.'
+              + encodeURIComponent(F.template),
+              { cache: 'no-store', headers: { apikey: F.anonKey,
+                                              Authorization: 'Bearer ' + F.anonKey } })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (rows) {
+            if (!rows) return G(N(w));
+            var a = rows.map(function (e) { return e && e.domain; });
+            G(L(w, a));
+          })
+          .catch(function () { G(N(w)); });
+      } catch (x) { G(N(w)); }
     })();
   }
+  else if (N(w)) { O(); }
+  else { K(); }
 
   /* watchdog: the token must still be intact long after load */
   setInterval(function () {

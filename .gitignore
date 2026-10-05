@@ -1,0 +1,10 @@
+# scratch files used while editing — never published
+_*.html
+_*.json
+*.tmp
+*.log
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini

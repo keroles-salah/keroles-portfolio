@@ -2503,8 +2503,8 @@ else{links.forEach(function(a){var t=document.getElementById(a.getAttribute('hre
 return id;}
 function apply(){cur=pick();busy=true;links.forEach(function(a){var on=a.getAttribute('href')==='#'+cur;if(a.classList.contains('active')!==on)a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});busy=false;}
 var q=false;function sched(){if(q)return;q=true;requestAnimationFrame(function(){q=false;apply();});}
-addEventListener('scroll',sched,{passive:true});addEventListener('resize',sched);addEventListener('hashchange',sched);addEventListener('load',sched);
-new MutationObserver(function(){if(!busy)sched();}).observe(document.querySelector('.nav-links'),{subtree:true,attributes:true,attributeFilter:['class']});
+addEventListener('scroll',apply,{passive:true});addEventListener('resize',sched);addEventListener('hashchange',sched);addEventListener('load',sched);
+new MutationObserver(function(){if(!busy)apply();}).observe(document.querySelector('.nav-links'),{subtree:true,attributes:true,attributeFilter:['class']});
 apply();})();
 </script>
 </body>

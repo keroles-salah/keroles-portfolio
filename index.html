@@ -1137,24 +1137,68 @@ footer{padding:48px 0 104px;}
   html{scroll-behavior:auto;}
 }
 
-/* ===== Testimonials ===== */
-.tst-sum{display:inline-flex;align-items:center;gap:10px;margin:14px auto 0;padding:8px 16px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text2);font-size:.92rem;}
-.tst-sum b{color:var(--gold);}
-.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
-.tst{display:flex;flex-direction:column;gap:16px;padding:26px;}
-.tst-shot{position:relative;display:block;width:100%;padding:0;border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;background:var(--well);cursor:zoom-in;aspect-ratio:40/21;transition:border-color .3s,transform .4s var(--ease-out);}
-.tst-shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease-out);}
-.tst-shot:hover,.tst-shot:focus-visible{border-color:var(--border-2);}
-.tst-shot:hover img{transform:scale(1.04);}
-.tst-shot:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
-.tst-zoom{position:absolute;top:10px;left:10px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(5,7,19,.7);color:#fff;font-size:14px;}
-.tst .stars{color:var(--gold);letter-spacing:3px;font-size:1.05rem;}
-.tst .stars .off{opacity:.28;}
-.tst blockquote{margin:0;flex:1;font-family:'Noto Kufi Arabic','Cairo','Segoe UI','Tahoma',Manrope,sans-serif;font-size:1.05rem;line-height:1.9;color:var(--text);text-align:right;}
-.tst figcaption{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text3);border-top:1px solid var(--border);padding-top:14px;}
-.tst figcaption .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
-@media (max-width:980px){.tst-grid{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:640px){.tst-grid{grid-template-columns:1fr;}}
+/* ===== Testimonials (editorial redesign) ===== */
+#testimonials{position:relative;overflow:hidden;}
+#testimonials::before{content:"";position:absolute;inset:8% -10% auto auto;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--accent-soft),transparent 65%);pointer-events:none;z-index:0;}
+#testimonials .wrap{position:relative;z-index:1;}
+.tst-ar{font-family:'Noto Kufi Arabic','Cairo','Segoe UI','Tahoma',Manrope,sans-serif;}
+.tst-top{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:stretch;margin-bottom:28px;}
+/* featured */
+.tst-feat{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:0;padding:0;overflow:hidden;border-radius:var(--r-lg);margin:0;}
+.tst-feat::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,var(--border-2),transparent 40%,transparent 70%,var(--gold-soft));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}
+.tst-feat-media{position:relative;padding:30px 26px;background:var(--grad-soft);display:flex;align-items:center;border-left:0;}
+.tst-feat-body{position:relative;display:flex;flex-direction:column;justify-content:center;gap:18px;padding:40px 40px 34px;}
+.tst-tag{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--gold-soft);color:var(--gold);font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;}
+.tst-qm{position:absolute;top:6px;right:26px;font-family:Georgia,serif;font-size:9rem;line-height:1;color:var(--accent);opacity:.14;pointer-events:none;}
+.tst-feat blockquote{margin:0;font-size:clamp(1.25rem,1.9vw,1.6rem);line-height:1.85;font-weight:600;color:var(--text);text-align:right;}
+/* frame around original screenshots */
+.tst-shot{position:relative;display:block;width:100%;padding:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);cursor:zoom-in;box-shadow:var(--shadow-sm);transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out),border-color .3s;font:inherit;color:inherit;text-align:left;}
+.tst-bar{display:flex;align-items:center;gap:6px;height:26px;padding:0 12px;border-bottom:1px solid var(--border);background:var(--surface-2);}
+.tst-bar i{width:8px;height:8px;border-radius:50%;background:var(--slate);opacity:.55;}
+.tst-bar span{margin-left:auto;font-size:.68rem;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;}
+.tst-shot img{display:block;width:100%;height:auto;aspect-ratio:40/21;object-fit:cover;}
+.tst-feat .tst-shot{transform:rotate(-1.2deg);box-shadow:var(--shadow-lg);}
+.tst-shot:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:var(--shadow-md),var(--shadow-glow);}
+.tst-feat .tst-shot:hover{transform:rotate(0) translateY(-4px);}
+.tst-shot:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+.tst-zoom{position:absolute;bottom:10px;right:10px;display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(5,7,19,.78);color:#fff;font-size:.72rem;font-weight:600;opacity:0;transform:translateY(4px);transition:.3s var(--ease-out);}
+.tst-shot:hover .tst-zoom,.tst-shot:focus-visible .tst-zoom{opacity:1;transform:none;}
+.stars{color:var(--gold);letter-spacing:2px;font-size:1rem;line-height:1;}
+.stars .off{opacity:.25;}
+.tst-meta{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--text3);}
+.tst-meta .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+/* score panel */
+.tst-score{display:flex;flex-direction:column;gap:18px;padding:30px;border-radius:var(--r-lg);}
+.tst-num{display:flex;align-items:baseline;gap:8px;}
+.tst-num b{font-size:4.6rem;line-height:.9;font-weight:800;letter-spacing:-.04em;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.tst-num span{color:var(--text3);font-size:1rem;}
+.tst-score p{margin:0;color:var(--text2);font-size:.92rem;line-height:1.6;}
+.tst-bars{list-style:none;margin:0;padding:16px 0 0;border-top:1px solid var(--border);display:grid;gap:9px;}
+.tst-bars li{display:grid;grid-template-columns:26px 1fr 14px;align-items:center;gap:10px;font-size:.8rem;color:var(--text3);}
+.tst-bars .t{height:6px;border-radius:99px;background:var(--well);overflow:hidden;}
+.tst-bars .t i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--gold),#ffd76a);}
+.tst-src{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text3);}
+/* compact reviews */
+.tst-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px;}
+.tst{display:flex;flex-direction:column;gap:14px;padding:20px;margin:0;border-radius:var(--r);grid-column:span 2;}
+.tst.wide{grid-column:span 3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);align-items:center;gap:20px;}
+.tst.wide .tst-txt{display:flex;flex-direction:column;gap:12px;}
+.tst blockquote{margin:0;flex:1;font-size:1.08rem;line-height:1.85;font-weight:500;color:var(--text);text-align:right;}
+.tst .tst-head{display:flex;align-items:center;justify-content:space-between;}
+.tst .tst-head .n{font-size:.72rem;letter-spacing:.14em;color:var(--text3);font-variant-numeric:tabular-nums;}
+@media (max-width:1100px){.tst-top{grid-template-columns:1fr;}.tst-score{display:grid;grid-template-columns:auto 1fr;column-gap:30px;align-items:center;}.tst-score .tst-bars{grid-column:2;grid-row:1/4;border-top:0;padding:0;}.tst-src{margin-top:0;}}
+@media (max-width:900px){.tst-feat{grid-template-columns:1fr;}.tst-feat-media{order:2;padding:0 26px 28px;background:none;}.tst-feat-body{padding:30px 26px 22px;}
+  .tst-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.tst,.tst.wide{grid-column:span 1;display:flex;}}
+@media (max-width:640px){
+  .tst-score{display:flex;padding:24px;align-items:stretch;text-align:left;}.tst-score .tst-bars{border-top:1px solid var(--border);padding-top:16px;}.tst-num b{font-size:3.6rem;}
+  .tst-feat .tst-shot{transform:none;}.tst-qm{font-size:6rem;right:16px;}
+  .tst-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 -20px;padding:4px 20px 18px;scrollbar-width:none;}
+  .tst-grid::-webkit-scrollbar{display:none;}
+  .tst,.tst.wide{flex:0 0 84%;scroll-snap-align:center;}
+  .tst-hint{display:block!important;}
+}
+.tst-hint{display:none;text-align:center;color:var(--text3);font-size:.78rem;margin-top:4px;}
+@media (prefers-reduced-motion:reduce){.tst-shot,.tst-zoom{transition:none;}.tst-feat .tst-shot,.tst-shot:hover,.tst-feat .tst-shot:hover{transform:none;}.tst-grid{scroll-behavior:auto;}}
 </style>
 
 <!-- ==========================================================================
@@ -1890,88 +1934,87 @@ function a0_0x3382(_0x10a9f7,_0x13dbfe){_0x10a9f7=_0x10a9f7-0x198;var _0x30cfad=
       <span class="eyebrow"><svg class="ic"><use href="#i-spark"/></svg> Client Reviews</span>
       <h2>What clients <span class="grad-text">say about my work</span></h2>
       <p>Real reviews from completed orders on Khamsat, quoted as written.</p>
-      <div class="tst-sum"><b>★ 4.8</b> average · 6 reviews</div>
     </div>
-    <div class="tst-grid">
-      <figure class="tst card" data-rev="up">
-        <button class="tst-shot" type="button" data-lightbox
-                data-img="reviews/review-1.webp"
-                data-title="Client review 1 · Khamsat"
-                data-sub="Original screenshot of the review on Khamsat"
-                aria-label="View original screenshot of client review 1">
-          <img src="reviews/review-1-thumb.webp" loading="lazy" decoding="async" width="480" height="252" alt="Screenshot of client review 1 on Khamsat">
-          <span class="tst-zoom" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
-        </button>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote dir="rtl" lang="ar">عمل رااائع جدًا ، وفي وقت قياسي ، شخص محترم وأخلاق عالية التنفيذ جداً ممتاز ، برافووو أنصح الجميع بالتعامل معه</blockquote>
-        <figcaption><span class="dot"></span>Client review · Khamsat</figcaption>
+    <div class="tst-top">
+      <figure class="tst-feat card" data-rev="up">
+        <div class="tst-feat-body">
+          <span class="tst-qm" aria-hidden="true">&rdquo;</span>
+          <span class="tst-tag">Featured review</span>
+          <div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote class="tst-ar" dir="rtl" lang="ar">عمل رااائع جدًا ، وفي وقت قياسي ، شخص محترم وأخلاق عالية التنفيذ جداً ممتاز ، برافووو أنصح الجميع بالتعامل معه</blockquote>
+          <div class="tst-meta"><span class="dot"></span>Client review · Khamsat</div>
+        </div>
+        <div class="tst-feat-media"><button class="tst-shot" type="button" data-lightbox data-img="reviews/review-1.webp" data-title="Client review 1 · Khamsat" data-sub="Original screenshot of the review on Khamsat" aria-label="View original screenshot of client review 1">
+          <span class="tst-bar" aria-hidden="true"><i></i><i></i><i></i><span>khamsat.com</span></span>
+          <img src="reviews/review-1.webp" loading="lazy" decoding="async" width="1200" height="630" alt="Screenshot of client review 1 on Khamsat">
+          <span class="tst-zoom" aria-hidden="true">View original <svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
+        </button></div>
       </figure>
-      <figure class="tst card" data-rev="up">
-        <button class="tst-shot" type="button" data-lightbox
-                data-img="reviews/review-2.webp"
-                data-title="Client review 2 · Khamsat"
-                data-sub="Original screenshot of the review on Khamsat"
-                aria-label="View original screenshot of client review 2">
+      <aside class="tst-score card" data-rev="up" aria-label="Rating summary">
+        <div class="tst-num"><b>4.8</b><span>/ 5</span></div>
+        <div><div class="stars" role="img" aria-label="Average 4.8 out of 5 stars">★★★★★</div></div>
+        <p>Average of <strong>6 reviews</strong> from completed orders.</p>
+        <ul class="tst-bars" aria-label="Rating breakdown">
+          <li><span>5★</span><span class="t"><i style="width:83.3%"></i></span><span>5</span></li>
+          <li><span>4★</span><span class="t"><i style="width:16.7%"></i></span><span>1</span></li>
+          <li><span>3★</span><span class="t"><i style="width:0"></i></span><span>0</span></li>
+        </ul>
+        <div class="tst-src"><span class="dot" style="width:7px;height:7px;border-radius:50%;background:var(--accent)"></span>Source: Khamsat</div>
+      </aside>
+    </div>
+    <div class="tst-grid" role="list" data-rev="up">
+      <figure class="tst card wide" role="listitem">
+        <div class="tst-txt"><div class="tst-head"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><span class="n">02</span></div>
+        <blockquote class="tst-ar" dir="rtl" lang="ar">شكرا لك عمل رابع وتقبل التعليمات وإنجاز باسرع وقت ساعود للعمل معك مجددا بكل تأكيد</blockquote>
+        <div class="tst-meta"><span class="dot"></span>Client review · Khamsat</div></div>
+        <button class="tst-shot" type="button" data-lightbox data-img="reviews/review-2.webp" data-title="Client review 2 · Khamsat" data-sub="Original screenshot of the review on Khamsat" aria-label="View original screenshot of client review 2">
+          <span class="tst-bar" aria-hidden="true"><i></i><i></i><i></i><span>khamsat.com</span></span>
           <img src="reviews/review-2-thumb.webp" loading="lazy" decoding="async" width="480" height="252" alt="Screenshot of client review 2 on Khamsat">
-          <span class="tst-zoom" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
+          <span class="tst-zoom" aria-hidden="true">View original <svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
         </button>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote dir="rtl" lang="ar">شكرا لك عمل رابع وتقبل التعليمات وإنجاز باسرع وقت ساعود للعمل معك مجددا بكل تأكيد</blockquote>
-        <figcaption><span class="dot"></span>Client review · Khamsat</figcaption>
       </figure>
-      <figure class="tst card" data-rev="up">
-        <button class="tst-shot" type="button" data-lightbox
-                data-img="reviews/review-3.webp"
-                data-title="Client review 3 · Khamsat"
-                data-sub="Original screenshot of the review on Khamsat"
-                aria-label="View original screenshot of client review 3">
+      <figure class="tst card wide" role="listitem">
+        <div class="tst-txt"><div class="tst-head"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><span class="n">03</span></div>
+        <blockquote class="tst-ar" dir="rtl" lang="ar">اشكرك على مجهودك وسرعة الانجاز</blockquote>
+        <div class="tst-meta"><span class="dot"></span>Client review · Khamsat</div></div>
+        <button class="tst-shot" type="button" data-lightbox data-img="reviews/review-3.webp" data-title="Client review 3 · Khamsat" data-sub="Original screenshot of the review on Khamsat" aria-label="View original screenshot of client review 3">
+          <span class="tst-bar" aria-hidden="true"><i></i><i></i><i></i><span>khamsat.com</span></span>
           <img src="reviews/review-3-thumb.webp" loading="lazy" decoding="async" width="480" height="252" alt="Screenshot of client review 3 on Khamsat">
-          <span class="tst-zoom" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
+          <span class="tst-zoom" aria-hidden="true">View original <svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
         </button>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote dir="rtl" lang="ar">اشكرك على مجهودك وسرعة الانجاز</blockquote>
-        <figcaption><span class="dot"></span>Client review · Khamsat</figcaption>
       </figure>
-      <figure class="tst card" data-rev="up">
-        <button class="tst-shot" type="button" data-lightbox
-                data-img="reviews/review-4.webp"
-                data-title="Client review 4 · Khamsat"
-                data-sub="Original screenshot of the review on Khamsat"
-                aria-label="View original screenshot of client review 4">
+      <figure class="tst card" role="listitem">
+        <button class="tst-shot" type="button" data-lightbox data-img="reviews/review-4.webp" data-title="Client review 4 · Khamsat" data-sub="Original screenshot of the review on Khamsat" aria-label="View original screenshot of client review 4">
+          <span class="tst-bar" aria-hidden="true"><i></i><i></i><i></i><span>khamsat.com</span></span>
           <img src="reviews/review-4-thumb.webp" loading="lazy" decoding="async" width="480" height="252" alt="Screenshot of client review 4 on Khamsat">
-          <span class="tst-zoom" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
+          <span class="tst-zoom" aria-hidden="true">View original <svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
         </button>
-        <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="off">★</span></div>
-        <blockquote dir="rtl" lang="ar">كان رائع</blockquote>
-        <figcaption><span class="dot"></span>Client review · Khamsat</figcaption>
+        <div class="tst-head"><div class="stars" role="img" aria-label="4 out of 5 stars">★★★★<span class="off">★</span></div><span class="n">04</span></div>
+        <blockquote class="tst-ar" dir="rtl" lang="ar">كان رائع</blockquote>
+        <div class="tst-meta"><span class="dot"></span>Client review · Khamsat</div>
       </figure>
-      <figure class="tst card" data-rev="up">
-        <button class="tst-shot" type="button" data-lightbox
-                data-img="reviews/review-5.webp"
-                data-title="Client review 5 · Khamsat"
-                data-sub="Original screenshot of the review on Khamsat"
-                aria-label="View original screenshot of client review 5">
+      <figure class="tst card" role="listitem">
+        <button class="tst-shot" type="button" data-lightbox data-img="reviews/review-5.webp" data-title="Client review 5 · Khamsat" data-sub="Original screenshot of the review on Khamsat" aria-label="View original screenshot of client review 5">
+          <span class="tst-bar" aria-hidden="true"><i></i><i></i><i></i><span>khamsat.com</span></span>
           <img src="reviews/review-5-thumb.webp" loading="lazy" decoding="async" width="480" height="252" alt="Screenshot of client review 5 on Khamsat">
-          <span class="tst-zoom" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
+          <span class="tst-zoom" aria-hidden="true">View original <svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
         </button>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote dir="rtl" lang="ar">سريع ومبدع شكرا</blockquote>
-        <figcaption><span class="dot"></span>Client review · Khamsat</figcaption>
+        <div class="tst-head"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><span class="n">05</span></div>
+        <blockquote class="tst-ar" dir="rtl" lang="ar">سريع ومبدع شكرا</blockquote>
+        <div class="tst-meta"><span class="dot"></span>Client review · Khamsat</div>
       </figure>
-      <figure class="tst card" data-rev="up">
-        <button class="tst-shot" type="button" data-lightbox
-                data-img="reviews/review-6.webp"
-                data-title="Client review 6 · Khamsat"
-                data-sub="Original screenshot of the review on Khamsat"
-                aria-label="View original screenshot of client review 6">
+      <figure class="tst card" role="listitem">
+        <button class="tst-shot" type="button" data-lightbox data-img="reviews/review-6.webp" data-title="Client review 6 · Khamsat" data-sub="Original screenshot of the review on Khamsat" aria-label="View original screenshot of client review 6">
+          <span class="tst-bar" aria-hidden="true"><i></i><i></i><i></i><span>khamsat.com</span></span>
           <img src="reviews/review-6-thumb.webp" loading="lazy" decoding="async" width="480" height="252" alt="Screenshot of client review 6 on Khamsat">
-          <span class="tst-zoom" aria-hidden="true"><svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
+          <span class="tst-zoom" aria-hidden="true">View original <svg class="ic"><use href="#i-arrow-up-right"/></svg></span>
         </button>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote dir="rtl" lang="ar">ممتاز</blockquote>
-        <figcaption><span class="dot"></span>Client review · Khamsat</figcaption>
+        <div class="tst-head"><div class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</div><span class="n">06</span></div>
+        <blockquote class="tst-ar" dir="rtl" lang="ar">ممتاز</blockquote>
+        <div class="tst-meta"><span class="dot"></span>Client review · Khamsat</div>
       </figure>
     </div>
+    <p class="tst-hint" aria-hidden="true">Swipe for more reviews →</p>
   </div>
 </section>
 

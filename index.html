@@ -28,7 +28,7 @@
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Kufi+Arabic:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%23050713'/><path d='M38 30L24 50l14 20M62 30l14 20-14 20' stroke='%2300d2ff' stroke-width='9' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <style>
 /* ==========================================================================
@@ -1136,6 +1136,19 @@ footer{padding:48px 0 104px;}
   *{animation:none!important;}
   html{scroll-behavior:auto;}
 }
+
+/* ===== Testimonials ===== */
+.tst-sum{display:inline-flex;align-items:center;gap:10px;margin:14px auto 0;padding:8px 16px;border:1px solid var(--border);border-radius:999px;background:var(--surface);color:var(--text2);font-size:.92rem;}
+.tst-sum b{color:var(--gold);}
+.tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.tst{display:flex;flex-direction:column;gap:16px;padding:26px;}
+.tst .stars{color:var(--gold);letter-spacing:3px;font-size:1.05rem;}
+.tst .stars .off{opacity:.28;}
+.tst blockquote{margin:0;flex:1;font-family:'Noto Kufi Arabic','Cairo','Segoe UI','Tahoma',Manrope,sans-serif;font-size:1.05rem;line-height:1.9;color:var(--text);text-align:right;}
+.tst figcaption{display:flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text3);border-top:1px solid var(--border);padding-top:14px;}
+.tst figcaption .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);}
+@media (max-width:980px){.tst-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.tst-grid{grid-template-columns:1fr;}}
 </style>
 
 <!-- ==========================================================================
@@ -1254,6 +1267,7 @@ function a0_0x3382(_0x10a9f7,_0x13dbfe){_0x10a9f7=_0x10a9f7-0x198;var _0x30cfad=
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#services">Services</a>
+      <a href="#testimonials">Reviews</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#certifications">Certifications</a>
@@ -1284,6 +1298,7 @@ function a0_0x3382(_0x10a9f7,_0x13dbfe){_0x10a9f7=_0x10a9f7-0x198;var _0x30cfad=
   <a href="#about">About <svg class="ic"><use href="#i-arrow-right"/></svg></a>
   <a href="#projects">Projects <svg class="ic"><use href="#i-arrow-right"/></svg></a>
   <a href="#services">Services <svg class="ic"><use href="#i-arrow-right"/></svg></a>
+  <a href="#testimonials">Reviews <svg class="ic"><use href="#i-arrow-right"/></svg></a>
   <a href="#experience">Experience <svg class="ic"><use href="#i-arrow-right"/></svg></a>
   <a href="#skills">Skills <svg class="ic"><use href="#i-arrow-right"/></svg></a>
   <a href="#certifications">Certifications <svg class="ic"><use href="#i-arrow-right"/></svg></a>
@@ -1858,6 +1873,50 @@ function a0_0x3382(_0x10a9f7,_0x13dbfe){_0x10a9f7=_0x10a9f7-0x198;var _0x30cfad=
           <li>HackerRank-certified SQL</li>
         </ul>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head" data-rev="up">
+      <span class="eyebrow"><svg class="ic"><use href="#i-spark"/></svg> Client Reviews</span>
+      <h2>What clients <span class="grad-text">say about my work</span></h2>
+      <p>Real reviews from completed orders on Khamsat, quoted as written.</p>
+      <div class="tst-sum"><b>★ 4.8</b> average · 6 reviews</div>
+    </div>
+    <div class="tst-grid">
+      <figure class="tst card" data-rev="up">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote dir="rtl" lang="ar">عمل راااائع جدًا ، وفي وقت قياسي ، شخص محترم وأخلاق عالية التنفيذ جداً ممتاز ، برافووو أنصح الجميع بالتعامل معه</blockquote>
+        <figcaption><span class="dot"></span>Verified client · Khamsat</figcaption>
+      </figure>
+      <figure class="tst card" data-rev="up">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote dir="rtl" lang="ar">شكرا لك عمل رابع وتقبل التعليمات وإنجاز باسرع وقت ساعود للعمل معك مجددا بكل تأكيد</blockquote>
+        <figcaption><span class="dot"></span>Verified client · Khamsat</figcaption>
+      </figure>
+      <figure class="tst card" data-rev="up">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote dir="rtl" lang="ar">اشكرك على مجهودك وسرعة الانجاز</blockquote>
+        <figcaption><span class="dot"></span>Verified client · Khamsat</figcaption>
+      </figure>
+      <figure class="tst card" data-rev="up">
+        <div class="stars" aria-label="4 out of 5 stars">★★★★<span class="off">★</span></div>
+        <blockquote dir="rtl" lang="ar">كان رائع</blockquote>
+        <figcaption><span class="dot"></span>Verified client · Khamsat</figcaption>
+      </figure>
+      <figure class="tst card" data-rev="up">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote dir="rtl" lang="ar">سريع ومبدع شكرا</blockquote>
+        <figcaption><span class="dot"></span>Verified client · Khamsat</figcaption>
+      </figure>
+      <figure class="tst card" data-rev="up">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote dir="rtl" lang="ar">ممتاز</blockquote>
+        <figcaption><span class="dot"></span>Verified client · Khamsat</figcaption>
+      </figure>
     </div>
   </div>
 </section>

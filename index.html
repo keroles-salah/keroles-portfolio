@@ -2493,5 +2493,19 @@ function a0_0x387a(_0x13f10a,_0x2db2ba){_0x13f10a=_0x13f10a-0x1a3;var _0x47c3d9=
 (function(){var last=null,lb=document.getElementById('lightbox');if(lb)new MutationObserver(function(){if(!lb.classList.contains('open')&&last){var k=document.getElementById('lbLink');if(k)k.style.display='';var l=last;last=null;l.focus();}}).observe(lb,{attributes:true,attributeFilter:['class']});
 document.querySelectorAll('.tst-shot').forEach(function(b){b.addEventListener('click',function(){last=b;setTimeout(function(){var c=document.getElementById('lbClose');var k=document.getElementById('lbLink');if(k){k.hidden=true;k.style.display='none';}if(c&&document.getElementById('lightbox').classList.contains('open'))c.focus();},60);});});})();
 </script>
+<script>
+/* nav scrollspy: covers every section linked in the nav (incl. #testimonials) and keeps the highlight in sync */
+(function(){var links=[].slice.call(document.querySelectorAll('.nav-links a[href^="#"]')).filter(function(a){return a.getAttribute('href').length>1&&document.getElementById(a.getAttribute('href').slice(1));});if(!links.length)return;
+var cur=null,busy=false;
+function pick(){var nav=document.querySelector('.nav'),off=(nav?nav.offsetHeight:0)+innerHeight*.3,id=null;
+if(innerHeight+scrollY>=document.documentElement.scrollHeight-2){id=links[links.length-1].getAttribute('href').slice(1);}
+else{links.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));if(t.getBoundingClientRect().top<=off)id=t.id;});}
+return id;}
+function apply(){cur=pick();busy=true;links.forEach(function(a){var on=a.getAttribute('href')==='#'+cur;if(a.classList.contains('active')!==on)a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});busy=false;}
+var q=false;function sched(){if(q)return;q=true;requestAnimationFrame(function(){q=false;apply();});}
+addEventListener('scroll',sched,{passive:true});addEventListener('resize',sched);addEventListener('hashchange',sched);addEventListener('load',sched);
+new MutationObserver(function(){if(!busy)sched();}).observe(document.querySelector('.nav-links'),{subtree:true,attributes:true,attributeFilter:['class']});
+apply();})();
+</script>
 </body>
 </html>
